@@ -1,0 +1,18 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+
+@{
+	var latestBlogPost = Umbraco.Content(Guid.Parse("42f40f47-c647-47c8-8593-5a017e723e64"))
+    .ChildrenOfType("blogPost")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate).FirstOrDefault();
+}
+
+<div><h1>@latestBlogPost.Value("blogPostTitle")</h1></div>
+<div>@latestBlogPost.Value("blogPostContent")</div>
+

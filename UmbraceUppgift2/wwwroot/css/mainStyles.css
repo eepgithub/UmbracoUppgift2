@@ -1,0 +1,42 @@
+html,body {
+  height: 100%;
+}
+        
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.mainTitle {
+    border-style: solid;
+    border-radius: 1rem;
+    background: #c4d8e2;
+}
+
+.titleText {
+    text-align: center;
+    color: rgb(33, 37, 41);
+}
+
+.sideNavBar {
+    border-style: solid;
+    border-radius: 1rem;
+    background: #c4d8e2;
+}
+
+.mainContentRow {
+    flex-grow: 1;
+}
+
+.mainContent {
+    border-style: solid;
+    border-radius: 1rem;
+    background: #c4d8e2;
+}
+
+.footer {
+    border-style: solid;
+    border-radius: 1rem;
+    background: #c4d8e2;
+    text-align: center;
+}

@@ -1,0 +1,73 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+}
+
+@* the fun starts here *@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <title>Emils Blogg</title>
+    
+    <link 
+     rel="stylesheet" 
+     href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"/>
+    
+    <link rel="stylesheet" href="/css/mainStyles.css"/>
+    
+  </head>
+  <body>
+      <div class="container">
+          <div class="row">
+              <div class="col mainTitle">
+                  <h1 class="titleText">Emils Blogg</h1>
+              </div>
+          </div>
+          <div class="row mainContentRow">
+              <div class="col-lg-9 mainContent">
+                  @RenderBody()
+                 
+              </div>
+              <div class="col-lg-3 sideNavBar">
+                  
+            @{
+            	var selection = Umbraco.Content(Guid.Parse("42f40f47-c647-47c8-8593-5a017e723e64"))
+                .ChildrenOfType("blogPost")
+                .Where(x => x.IsVisible())
+                .OrderByDescending(x => x.CreateDate);
+            }
+            <ul>
+            	@foreach (var item in selection)
+            	{
+            		<li>
+            			<a href="@item.Url()">@item.Value("blogPostTitle")</a>
+            		</li>
+            	}
+            </ul>
+
+
+              </div>
+          </div>
+          <div class="row">
+              <div class="col footer">
+                  <p>Copyright&nbsp;<i class="fa fa-copyright"></i>&nbsp;Emil Pettersson 2021
+                  </p>
+              </div>
+          </div>
+      </div>
+      <script srv="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+
+
+
+
